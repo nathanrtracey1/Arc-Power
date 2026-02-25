@@ -1,0 +1,141 @@
+* {
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    cursor: default;
+    box-sizing: border-box;
+}
+
+:root {
+    color-scheme: light dark;
+    --spacing: 24px;
+    --radius: 12px;
+    --text: #1d1d1f;
+    --text-secondary: #6e6e73;
+    --fill: rgba(0, 0, 0, 0.04);
+    --fill-strong: rgba(0, 0, 0, 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text: #f5f5f7;
+        --text-secondary: #a1a1a6;
+        --fill: rgba(255, 255, 255, 0.06);
+        --fill-strong: rgba(255, 255, 255, 0.12);
+    }
+    .window-card {
+        background: rgba(40, 40, 42, 0.4);
+    }
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--text);
+    text-align: center;
+    padding: var(--spacing);
+    background: transparent;
+}
+
+.window-card {
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing);
+    padding: var(--spacing);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.25);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    backdrop-filter: blur(24px) saturate(180%);
+}
+
+.icon-wrap {
+    width: 128px;
+    height: 128px;
+    border-radius: 22px;
+    overflow: hidden;
+    background: var(--fill);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+}
+
+.app-icon {
+    width: 128px;
+    height: 128px;
+    object-fit: contain;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: var(--text);
+}
+
+.instruction {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+body:not(.state-on, .state-off) .instruction.state-on,
+body:not(.state-on, .state-off) .instruction.state-off {
+    display: none;
+}
+
+body.state-on .instruction.state-off,
+body.state-on .instruction.state-unknown {
+    display: none;
+}
+
+body.state-off .instruction.state-on,
+body.state-off .instruction.state-unknown {
+    display: none;
+}
+
+.open-preferences {
+    margin-top: 8px;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: inherit;
+    color: #fff;
+    background: #0a84ff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.open-preferences:hover {
+    background: #409cff;
+}
+
+.open-preferences:active {
+    background: #0066cc;
+}
+
+@media (prefers-color-scheme: dark) {
+    .open-preferences {
+        background: #0a84ff;
+    }
+    .open-preferences:hover {
+        background: #409cff;
+    }
+}

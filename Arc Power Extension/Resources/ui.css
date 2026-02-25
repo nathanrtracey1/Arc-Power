@@ -1,0 +1,932 @@
+/* Arcify Safari – macOS Liquid Glass sidebar */
+
+.arcify-panel {
+  --glass-bg: rgba(28, 28, 30, 0.62);
+  --glass-bg-elevated: rgba(44, 44, 46, 0.6);
+  --glass-bg-hover: rgba(58, 58, 62, 0.76);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-text: rgba(255, 255, 255, 0.95);
+  --glass-text-muted: rgba(255, 255, 255, 0.55);
+  --glass-radius: 10px;
+  --glass-radius-sm: 8px;
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 280px !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  pointer-events: auto !important;
+  background: var(--glass-bg) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(180%) !important;
+  backdrop-filter: blur(40px) saturate(180%) !important;
+  color: var(--glass-text) !important;
+  z-index: 999999 !important;
+  padding: 0 !important;
+  font-family: "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif !important;
+  font-size: 13px !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  box-shadow: var(--glass-shadow) !important;
+  border-right: 1px solid var(--glass-border) !important;
+  border-radius: 0 var(--glass-radius) var(--glass-radius) 0 !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  transform: translateX(-100%) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: transform 0.24s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.18s ease-out, visibility 0s linear 0.24s !important;
+}
+
+.arcify-panel.arcify-panel-visible {
+  transform: translateX(0) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: transform 0.24s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.18s ease-out !important;
+}
+
+/* Auto-hide mode: keep a visible handle until hovered */
+.arcify-panel.arcify-panel-visible[data-auto-hide="true"] {
+  transform: translateX(calc(-100% + 14px)) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: none !important;
+  transition: transform 0.42s cubic-bezier(0.22, 0.61, 0.36, 1) !important;
+}
+
+.arcify-panel.arcify-panel-visible.arcify-panel-hovered[data-auto-hide="true"] {
+  transform: translateX(0) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transition: transform 0.28s cubic-bezier(0.22, 0.61, 0.36, 1) !important;
+}
+
+/* Theme tint overlay – more visible/vibrant */
+.arcify-panel::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: var(--arcify-tint, transparent) !important;
+  pointer-events: none !important;
+  border-radius: 0 var(--glass-radius) var(--glass-radius) 0 !important;
+  z-index: 0 !important;
+}
+
+/* Gradient theme: vibrant gradient with light scrim for readability */
+.arcify-panel[data-space-gradient="true"]::before {
+  background: var(--arcify-gradient) !important;
+  opacity: 1 !important;
+}
+
+.arcify-panel[data-space-gradient="true"]::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: rgba(0, 0, 0, 0.12) !important;
+  pointer-events: none !important;
+  border-radius: 0 var(--glass-radius) var(--glass-radius) 0 !important;
+  z-index: 0.5 !important;
+}
+
+.arcify-panel[data-space-gradient="true"] {
+  --glass-text: rgba(255, 255, 255, 0.98) !important;
+  --glass-text-muted: rgba(255, 255, 255, 0.72) !important;
+  --arcify-text: rgba(255, 255, 255, 0.98) !important;
+  --arcify-text-muted: rgba(255, 255, 255, 0.72) !important;
+}
+
+.arcify-panel > * {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Always readable text: use high-contrast vars and optional shadow */
+.arcify-panel .arcify-tab-label,
+.arcify-panel .arcify-section-label,
+.arcify-panel .arcify-folder-label {
+  color: var(--arcify-text, var(--glass-text)) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+.arcify-panel .arcify-section-label,
+.arcify-panel .arcify-submenu-label {
+  color: var(--arcify-text-muted, var(--glass-text-muted)) !important;
+}
+
+/* System appearance: light mode */
+.arcify-panel[data-system-theme="light"] {
+  --glass-bg: rgba(242, 242, 247, 0.78) !important;
+  --glass-bg-elevated: rgba(255, 255, 255, 0.86) !important;
+  --glass-bg-hover: rgba(229, 229, 234, 0.88) !important;
+  --glass-border: rgba(0, 0, 0, 0.08) !important;
+  --glass-text: rgba(0, 0, 0, 0.9) !important;
+  --glass-text-muted: rgba(0, 0, 0, 0.5) !important;
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+}
+
+.arcify-panel[data-system-theme="light"] .arcify-bottom-bar {
+  background: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Hover zone used to trigger auto-show when the mouse hits the left edge */
+.arcify-hover-zone {
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 14px !important;
+  height: 100vh !important;
+  z-index: 999998 !important;
+  pointer-events: auto !important;
+}
+
+.arcify-scroll {
+  flex: 1 !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding: 12px !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+/* Space switch animation – slide horizontally based on direction */
+.arcify-scroll.arcify-space-anim-next {
+  animation: arcify-space-slide-next 0.24s ease-out;
+}
+
+.arcify-scroll.arcify-space-anim-prev {
+  animation: arcify-space-slide-prev 0.24s ease-out;
+}
+
+@keyframes arcify-space-slide-next {
+  from {
+    transform: translateX(18px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes arcify-space-slide-prev {
+  from {
+    transform: translateX(-18px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Section labels */
+.arcify-section-label {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  color: var(--glass-text-muted) !important;
+  margin-bottom: 6px !important;
+  padding: 0 4px !important;
+}
+
+.arcify-section {
+  margin-bottom: 14px !important;
+}
+
+/* Favorites grid (Arc-style tiles) */
+.arcify-favorites-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 8px !important;
+  margin-bottom: 4px !important;
+}
+
+.arcify-favorite-tile {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 10px !important;
+  border: none !important;
+  border-radius: var(--glass-radius-sm) !important;
+  background: var(--glass-bg-elevated) !important;
+  color: var(--arcify-text, var(--glass-text)) !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease, transform 0.1s ease !important;
+  min-height: 44px !important;
+  width: 44px !important;
+  box-sizing: border-box !important;
+}
+
+.arcify-favorite-tile:hover {
+  background: var(--glass-bg-hover) !important;
+  transform: scale(1.05) !important;
+}
+
+.arcify-favorites-grid.arcify-drag-over {
+  outline: 1px dashed var(--glass-text-muted) !important;
+  outline-offset: 4px !important;
+}
+
+.arcify-favorite-tile.arcify-drag-over {
+  background: var(--glass-bg-hover) !important;
+}
+
+.arcify-favicon-tile {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.arcify-favicon-tile img {
+  width: 24px !important;
+  height: 24px !important;
+  object-fit: contain !important;
+}
+
+/* Tab row + close button */
+.arcify-tab {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 6px 8px !important;
+  margin-bottom: 2px !important;
+  border-radius: var(--glass-radius-sm) !important;
+  cursor: pointer !important;
+  transition: background 0.12s ease, border-color 0.12s ease, box-shadow 0.12s ease !important;
+  min-height: 32px !important;
+  box-sizing: border-box !important;
+}
+
+.arcify-tab.arcify-tab-active {
+  background: var(--arcify-accent, rgba(10, 132, 255, 0.35)) !important;
+  border-left: 3px solid rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
+}
+
+.arcify-panel[data-system-theme="light"] .arcify-tab.arcify-tab-active {
+  background: var(--arcify-accent, rgba(10, 132, 255, 0.25)) !important;
+  border-left-color: rgba(0, 0, 0, 0.5) !important;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06) !important;
+}
+
+.arcify-tab:hover {
+  background: var(--glass-bg-elevated) !important;
+}
+
+.arcify-tab.arcify-tab-active:hover {
+  background: var(--arcify-accent, rgba(10, 132, 255, 0.45)) !important;
+}
+
+.arcify-panel[data-system-theme="light"] .arcify-tab.arcify-tab-active:hover {
+  background: var(--arcify-accent, rgba(10, 132, 255, 0.35)) !important;
+}
+
+.arcify-tab:hover .arcify-tab-close,
+.arcify-tab:hover .arcify-tab-unpin {
+  opacity: 1 !important;
+}
+
+.arcify-tab-unpin {
+  flex-shrink: 0 !important;
+  padding: 2px 6px !important;
+  margin-left: auto !important;
+  border: none !important;
+  border-radius: 4px !important;
+  background: transparent !important;
+  color: var(--arcify-text-muted, var(--glass-text-muted)) !important;
+  font-size: 11px !important;
+  cursor: pointer !important;
+  opacity: 0 !important;
+  transition: opacity 0.15s ease, background 0.15s ease !important;
+}
+
+.arcify-tab-unpin:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: var(--arcify-text, var(--glass-text)) !important;
+}
+
+.arcify-tab.arcify-pinned .arcify-tab-unpin {
+  opacity: 0.7 !important;
+}
+
+.arcify-tab.arcify-drag-over {
+  background: var(--glass-bg-hover) !important;
+}
+
+.arcify-tab.arcify-dragging {
+  opacity: 0.5 !important;
+}
+
+.arcify-tab-close {
+  flex-shrink: 0 !important;
+  width: 20px !important;
+  height: 20px !important;
+  padding: 0 !important;
+  margin-left: auto !important;
+  border: none !important;
+  border-radius: 4px !important;
+  background: transparent !important;
+  color: var(--glass-text-muted) !important;
+  font-size: 16px !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+  opacity: 0 !important;
+  transition: opacity 0.15s ease, background 0.15s ease !important;
+}
+
+.arcify-tab-close:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: var(--glass-text) !important;
+}
+
+.arcify-pinned {
+  background: var(--glass-bg-elevated) !important;
+}
+
+.arcify-pinned:hover {
+  background: var(--glass-bg-hover) !important;
+}
+
+.arcify-favicon {
+  flex-shrink: 0 !important;
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 3px !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.arcify-favicon img {
+  width: 16px !important;
+  height: 16px !important;
+  object-fit: contain !important;
+}
+
+.arcify-favicon-missing {
+  background: var(--glass-border) !important;
+}
+
+.arcify-favicon-missing img {
+  display: none !important;
+}
+
+.arcify-tab-label {
+  flex: 1 !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+/* Folder section */
+.arcify-folder-section {
+  margin-bottom: 4px !important;
+}
+
+.arcify-folder-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 6px 8px !important;
+  margin-bottom: 2px !important;
+  border-radius: var(--glass-radius-sm) !important;
+  cursor: pointer !important;
+  transition: background 0.12s ease !important;
+  user-select: none !important;
+}
+
+.arcify-folder-header:hover {
+  background: var(--glass-bg-elevated) !important;
+}
+
+.arcify-folder-header.arcify-drag-over {
+  background: var(--glass-bg-hover) !important;
+  outline: 1px dashed var(--glass-text-muted) !important;
+}
+
+.arcify-chevron {
+  font-size: 12px !important;
+  color: var(--glass-text-muted) !important;
+  transition: transform 0.15s ease !important;
+  transform: rotate(90deg) !important;
+}
+
+.arcify-folder-label {
+  flex: 1 !important;
+  font-size: 13px !important;
+  color: var(--glass-text) !important;
+}
+
+.arcify-folder-tabs {
+  margin-left: 12px !important;
+  padding-left: 8px !important;
+  border-left: 1px solid var(--glass-border) !important;
+}
+
+.arcify-folder-icon {
+  flex-shrink: 0 !important;
+  font-size: 14px !important;
+  line-height: 1 !important;
+  margin-right: 2px !important;
+}
+
+/* Buttons */
+.arcify-btn {
+  padding: 8px 12px !important;
+  border-radius: var(--glass-radius-sm) !important;
+  border: none !important;
+  background: var(--glass-bg-elevated) !important;
+  color: var(--glass-text) !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease !important;
+}
+
+.arcify-btn:hover {
+  background: var(--glass-bg-hover) !important;
+}
+
+.arcify-btn-ghost {
+  background: transparent !important;
+  color: var(--glass-text-muted) !important;
+  padding: 6px 10px !important;
+}
+
+.arcify-btn-ghost:hover {
+  background: var(--glass-bg-elevated) !important;
+  color: var(--glass-text) !important;
+}
+
+.arcify-new-folder {
+  width: 100% !important;
+  margin-bottom: 8px !important;
+  text-align: left !important;
+}
+
+/* Bottom bar: New Tab, then footer row (gear + space strip) */
+.arcify-bottom-bar {
+  flex: none !important;
+  padding: 10px 12px 12px !important;
+  border-top: 1px solid var(--glass-border) !important;
+  background: rgba(0, 0, 0, 0.08) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+.arcify-footer-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+  width: 100% !important;
+}
+
+.arcify-settings-gear {
+  flex: none !important;
+  width: 32px !important;
+  height: 32px !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: var(--glass-radius-sm, 8px) !important;
+  background: transparent !important;
+  color: var(--glass-text-muted) !important;
+  font-size: 16px !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease, color 0.15s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.arcify-settings-gear:hover {
+  background: var(--glass-bg-hover) !important;
+  color: var(--glass-text) !important;
+}
+
+.arcify-new-tab-btn {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  padding: 8px 12px !important;
+  margin-bottom: 10px !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--glass-radius-sm, 8px) !important;
+  background: var(--glass-bg-elevated) !important;
+  color: var(--glass-text) !important;
+  font-size: 13px !important;
+  font-family: "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease, border-color 0.15s ease !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+.arcify-new-tab-btn:hover {
+  background: var(--glass-bg-hover) !important;
+}
+
+.arcify-new-tab-btn.arcify-url-box {
+  font-size: 12px !important;
+  color: var(--glass-text-muted) !important;
+  margin-bottom: 8px !important;
+}
+
+.arcify-new-tab-btn.arcify-url-box:hover {
+  color: var(--glass-text) !important;
+}
+
+.arcify-new-tab-plus {
+  font-size: 16px !important;
+  font-weight: 300 !important;
+  opacity: 0.9 !important;
+}
+
+/* Space strip at bottom – emojis only */
+.arcify-space-strip-bottom {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.arcify-space-emoji-btn {
+  width: 32px !important;
+  height: 32px !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  font-size: 18px !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease, transform 0.1s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.arcify-space-emoji-btn:hover {
+  background: var(--glass-bg-hover) !important;
+}
+
+.arcify-space-emoji-btn.arcify-space-emoji-active {
+  background: var(--glass-bg-elevated) !important;
+}
+
+.arcify-space-emoji-btn.arcify-space-emoji-new {
+  font-size: 20px !important;
+  font-weight: 300 !important;
+  opacity: 0.85 !important;
+}
+
+/* Per-space theme accents */
+.arcify-panel[data-space-theme="blue"] {
+  --arcify-accent: rgba(10, 132, 255, 0.5) !important;
+}
+.arcify-panel[data-space-theme="green"] {
+  --arcify-accent: rgba(48, 209, 88, 0.45) !important;
+}
+.arcify-panel[data-space-theme="purple"] {
+  --arcify-accent: rgba(191, 90, 242, 0.45) !important;
+}
+.arcify-panel[data-space-theme="orange"] {
+  --arcify-accent: rgba(255, 159, 10, 0.45) !important;
+}
+
+/* Context menu – frosted glass; explicit colors so text is readable (menu is in shadow root, not under .arcify-panel) */
+.arcify-context-menu {
+  position: fixed !important;
+  background: rgba(40, 40, 42, 0.96) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 6px !important;
+  padding: 6px 0 !important;
+  min-width: 200px !important;
+  max-width: min(280px, 100vw - 16px) !important;
+  max-height: min(80vh, 400px) !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.3) !important;
+  z-index: 1000001 !important;
+  font-family: "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif !important;
+  font-size: 13px !important;
+  -webkit-font-smoothing: antialiased !important;
+  line-height: 1.35 !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+  pointer-events: auto !important;
+}
+
+:host([data-system-theme="light"]) .arcify-context-menu {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15) !important;
+  color: rgba(0, 0, 0, 0.9) !important;
+}
+
+.arcify-menu-item {
+  padding: 6px 14px 6px 28px !important;
+  min-height: 26px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  cursor: pointer !important;
+  font-size: 13px !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+  box-sizing: border-box !important;
+}
+
+.arcify-menu-item:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+:host([data-system-theme="light"]) .arcify-menu-item {
+  color: rgba(0, 0, 0, 0.9) !important;
+}
+
+:host([data-system-theme="light"]) .arcify-menu-item:hover {
+  background: rgba(0, 0, 0, 0.06) !important;
+}
+
+.arcify-context-menu .arcify-menu-item + .arcify-submenu-label,
+.arcify-context-menu .arcify-submenu-label + .arcify-menu-item {
+  border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+  margin-top: 5px !important;
+  padding-top: 6px !important;
+}
+
+:host([data-system-theme="light"]) .arcify-context-menu .arcify-menu-item + .arcify-submenu-label,
+:host([data-system-theme="light"]) .arcify-context-menu .arcify-submenu-label + .arcify-menu-item {
+  border-top-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+.arcify-submenu-label {
+  color: rgba(255, 255, 255, 0.65) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.035em !important;
+  padding: 6px 14px 4px 28px !important;
+  text-transform: uppercase !important;
+  cursor: default !important;
+  pointer-events: none !important;
+}
+
+:host([data-system-theme="light"]) .arcify-submenu-label {
+  color: rgba(0, 0, 0, 0.55) !important;
+}
+
+.arcify-submenu-item {
+  padding-left: 36px !important;
+}
+
+/* Pinned tab close button – always visible for pinned */
+.arcify-tab.arcify-pinned .arcify-tab-close {
+  opacity: 0.7 !important;
+}
+
+.arcify-tab.arcify-pinned:hover .arcify-tab-close {
+  opacity: 1 !important;
+}
+
+/* Space setup modal – fit in panel viewport; ensure it’s on top and clickable */
+.arcify-modal-overlay {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  inset: 0 !important;
+  background: rgba(0, 0, 0, 0.4) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 1000000 !important;
+  overflow: auto !important;
+  padding: 12px !important;
+  box-sizing: border-box !important;
+  pointer-events: auto !important;
+}
+
+.arcify-modal {
+  background: var(--glass-bg-elevated) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+  min-width: 260px !important;
+  max-width: calc(100% - 24px) !important;
+  max-height: calc(100vh - 24px) !important;
+  overflow-y: auto !important;
+  box-shadow: var(--glass-shadow) !important;
+  margin: auto !important;
+  flex-shrink: 0 !important;
+}
+
+.arcify-modal-title-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 16px !important;
+}
+
+.arcify-modal-title {
+  font-size: 17px !important;
+  font-weight: 600 !important;
+  color: var(--glass-text) !important;
+  font-family: "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif !important;
+}
+
+.arcify-modal-close {
+  width: 28px !important;
+  height: 28px !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  color: var(--glass-text-muted) !important;
+  font-size: 18px !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease, color 0.15s ease !important;
+}
+
+.arcify-modal-close:hover {
+  background: var(--glass-bg-hover) !important;
+  color: var(--glass-text) !important;
+}
+
+.arcify-modal-label {
+  display: block !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: var(--glass-text-muted) !important;
+  margin-bottom: 6px !important;
+  margin-top: 12px !important;
+}
+
+.arcify-modal-label-sm {
+  margin-top: 10px !important;
+}
+
+.arcify-modal-input {
+  width: 100% !important;
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  border: 1px solid var(--glass-border) !important;
+  background: var(--glass-bg) !important;
+  color: var(--glass-text) !important;
+  font-size: 13px !important;
+  box-sizing: border-box !important;
+}
+
+.arcify-modal-input:focus {
+  outline: none !important;
+  border-color: var(--glass-text-muted) !important;
+}
+
+.arcify-modal-input-sm {
+  padding: 6px 10px !important;
+  font-size: 12px !important;
+}
+
+.arcify-emoji-grid {
+  display: grid !important;
+  grid-template-columns: repeat(8, 1fr) !important;
+  gap: 6px !important;
+}
+
+.arcify-emoji-btn {
+  width: 36px !important;
+  height: 36px !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 8px !important;
+  background: var(--glass-bg) !important;
+  color: var(--glass-text) !important;
+  font-size: 18px !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease !important;
+}
+
+.arcify-emoji-btn:hover {
+  background: var(--glass-bg-hover) !important;
+}
+
+.arcify-emoji-btn.arcify-emoji-selected {
+  background: var(--arcify-accent, rgba(10, 132, 255, 0.5)) !important;
+}
+
+.arcify-color-row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+}
+
+.arcify-color-btn {
+  width: 28px !important;
+  height: 28px !important;
+  padding: 0 !important;
+  border: 2px solid transparent !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  transition: transform 0.1s ease, border-color 0.15s ease !important;
+}
+
+.arcify-color-btn:hover {
+  transform: scale(1.1) !important;
+}
+
+.arcify-color-btn.arcify-color-default {
+  background: linear-gradient(135deg, var(--glass-border) 50%, var(--glass-bg-hover) 50%) !important;
+}
+
+.arcify-color-btn.arcify-color-selected {
+  border-color: var(--glass-text) !important;
+  box-shadow: 0 0 0 1px var(--glass-text-muted) !important;
+}
+
+.arcify-modal-checkbox {
+  margin-right: 8px !important;
+  vertical-align: middle !important;
+}
+
+.arcify-gradient-row {
+  display: flex !important;
+  gap: 12px !important;
+  margin-top: 8px !important;
+  flex-wrap: wrap !important;
+}
+
+.arcify-gradient-field {
+  flex: 1 !important;
+  min-width: 120px !important;
+}
+
+.arcify-gradient-field .arcify-modal-label {
+  margin-top: 0 !important;
+}
+
+.arcify-gradient-preview {
+  height: 32px !important;
+  margin-top: 10px !important;
+  border-radius: var(--glass-radius-sm, 8px) !important;
+  border: 1px solid var(--glass-border) !important;
+  background: var(--glass-bg-elevated) !important;
+  transition: background 0.2s ease !important;
+}
+
+.arcify-gradient-preview.arcify-gradient-preview-empty {
+  background: var(--glass-bg-elevated) !important;
+}
+
+.arcify-gradient-presets {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin-top: 8px !important;
+}
+
+.arcify-gradient-preset-btn {
+  width: 36px !important;
+  height: 36px !important;
+  padding: 0 !important;
+  border: 2px solid transparent !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: transform 0.12s ease, border-color 0.15s ease, box-shadow 0.15s ease !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+.arcify-gradient-preset-btn:hover {
+  transform: scale(1.08) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
+}
+
+.arcify-gradient-preset-btn.arcify-gradient-preset-selected {
+  border-color: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.arcify-modal-actions {
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 10px !important;
+  margin-top: 20px !important;
+  padding-top: 16px !important;
+  border-top: 1px solid var(--glass-border) !important;
+}
+
+.arcify-btn-primary {
+  background: var(--arcify-accent, rgba(10, 132, 255, 0.6)) !important;
+  color: #fff !important;
+}
+
+.arcify-btn-primary:hover {
+  filter: brightness(1.1) !important;
+}
