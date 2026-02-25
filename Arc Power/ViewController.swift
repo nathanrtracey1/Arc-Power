@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  Arcify Safari
+//  Arc Power
 //
 //  Created by Nathan Tracey on 2/22/26.
 //
@@ -20,7 +20,7 @@ let extensionBundleIdentifier: String = {
         return value
     }
     // Safe placeholder; must be overridden in a local Secrets.plist.
-    return "YOUR_TEAM_ID.ArcifySafari.ArcifySafari-Extension"
+    return "YOUR_TEAM_ID.ArcPower.Extension"
 }()
 
 class ViewController: NSViewController, WKNavigationDelegate, WKScriptMessageHandler {

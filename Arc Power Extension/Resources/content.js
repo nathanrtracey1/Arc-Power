@@ -121,7 +121,7 @@ if (typeof window.arcifyLoaded !== "undefined" && window.arcifyLoaded) {
 
   const NATIVE_APP_NAMES = (() => {
     const fromManifest = (browser.runtime && typeof browser.runtime.getManifest === "function" && browser.runtime.getManifest() && browser.runtime.getManifest().name) ? browser.runtime.getManifest().name : null;
-    const names = [fromManifest, "Arc Power", "Arcify Safari"].filter(Boolean);
+    const names = [fromManifest, "Arc Power"].filter(Boolean);
     return Array.from(new Set(names));
   })();
 
@@ -984,7 +984,7 @@ if (typeof window.arcifyLoaded !== "undefined" && window.arcifyLoaded) {
           return;
         }
         if (!parsed || typeof parsed !== "object" || !parsed.spaces) {
-          alert("That JSON doesn’t look like Arcify data.");
+          alert("That JSON doesn’t look like Arc Power data.");
           return;
         }
         sendBackground("saveState", { state: parsed }).then(() => loadState().then(() => renderPanel()));
@@ -1310,16 +1310,21 @@ if (typeof window.arcifyLoaded !== "undefined" && window.arcifyLoaded) {
   // Two-finger swipe to switch spaces – right = next space, left = prev; less sensitive
   let swipeSum = 0;
   let swipeT0 = 0;
-  const SWIPE_THRESHOLD = 95;
+  const SWIPE_THRESHOLD_RIGHT = 95;
+  const SWIPE_THRESHOLD_LEFT = 55;
   const SWIPE_WINDOW_MS = 280;
   panel.addEventListener("wheel", (e) => {
     if (!panel.classList.contains("arcify-panel-visible")) return;
     const now = Date.now();
     if (now - swipeT0 > SWIPE_WINDOW_MS) { swipeSum = 0; swipeT0 = now; }
     swipeSum += e.deltaX;
-    if (Math.abs(swipeSum) >= SWIPE_THRESHOLD) {
-      if (swipeSum > 0) switchSpace("next");
-      else switchSpace("prev");
+    if (swipeSum >= SWIPE_THRESHOLD_RIGHT) {
+      switchSpace("next");
+      swipeSum = 0;
+      swipeT0 = now;
+      e.preventDefault();
+    } else if (swipeSum <= -SWIPE_THRESHOLD_LEFT) {
+      switchSpace("prev");
       swipeSum = 0;
       swipeT0 = now;
       e.preventDefault();
@@ -1381,7 +1386,8 @@ if (typeof window.arcifyLoaded !== "undefined" && window.arcifyLoaded) {
           });
           // If this tab was pinned, unpin it so Favorites don't also appear in Pinned.
           if (context.pinned && Array.isArray(spaceData.pinned)) {
-            const i = spaceData.pinned.findIndex((t) => t.id === context.tabId);
+            const key = String(context.tabId);
+            const i = (spaceData.pinned || []).findIndex((t) => t && String(t.id) === key);
             if (i !== -1) {
               const [tab] = spaceData.pinned.splice(i, 1);
               spaceData.tabs = spaceData.tabs || [];

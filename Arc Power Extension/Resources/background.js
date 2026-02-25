@@ -13,7 +13,7 @@ const MOVE_PREFIX = "arcify-move-";
 function buildContextMenus() {
   if (!ctx.contextMenus) return;
   ctx.contextMenus.removeAll(() => {
-    ctx.contextMenus.create({ id: ARCIFY_ROOT, title: "Arcify", contexts: ["all"], visible: false });
+    ctx.contextMenus.create({ id: ARCIFY_ROOT, title: "Arc Power", contexts: ["all"], visible: false });
     ctx.contextMenus.create({ id: "arcify-copy", parentId: ARCIFY_ROOT, title: "Copy Link", contexts: ["all"] });
     ctx.contextMenus.create({ id: "arcify-duplicate", parentId: ARCIFY_ROOT, title: "Duplicate", contexts: ["all"] });
     ctx.contextMenus.create({ id: "arcify-pin", parentId: ARCIFY_ROOT, title: "Pin", contexts: ["all"] });
@@ -105,16 +105,16 @@ const DEFAULT_STATE = {
   updatedAt: 0
 };
 
-const CLOUD_STATE_KEY = "ArcifySafariStateV1";
+const CLOUD_STATE_KEY = "ArcPowerStateV1";
 
 const NATIVE_APP_NAMES = (() => {
   try {
     const m = browser.runtime && typeof browser.runtime.getManifest === "function" ? browser.runtime.getManifest() : null;
     const name = m && m.name;
-    const names = [name, "Arc Power", "Arcify Safari", "Arcify Safari (DEV)"].filter(Boolean);
+    const names = [name, "Arc Power"].filter(Boolean);
     return Array.from(new Set(names));
   } catch (_) {
-    return ["Arc Power", "Arcify Safari", "Arcify Safari (DEV)"];
+    return ["Arc Power"];
   }
 })();
 
@@ -431,8 +431,9 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
           space.favorites.push({ url, title: title || url, favIconUrl: favIconUrl || "" });
         }
         // Favorites and Pinned are mutually exclusive: remove this tab from Pinned when adding to Favorites.
-        if (tabId && pinned && Array.isArray(space.pinned)) {
-          const i = space.pinned.findIndex((t) => t.id === tabId);
+        if (tabId != null && pinned && Array.isArray(space.pinned)) {
+          const key = String(tabId);
+          const i = space.pinned.findIndex((t) => t && String(t.id) === key);
           if (i !== -1) {
             const [tab] = space.pinned.splice(i, 1);
             space.tabs = space.tabs || [];

@@ -1,6 +1,6 @@
 //
 //  SafariWebExtensionHandler.swift
-//  Arcify Safari Extension
+//  Arc Power Extension
 //
 //  Native host required by Safari to load the web extension. Safari loads this
 //  handler, which then runs the JavaScript (background.js, content.js, etc.).
@@ -14,7 +14,7 @@ import AppKit
 import UIKit
 #endif
 
-/// Native host entry point for the Arcify Safari Web Extension.
+/// Native host entry point for the Arc Power Web Extension.
 /// Safari delivers `browser.runtime.sendNativeMessage` traffic here.
 class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
 

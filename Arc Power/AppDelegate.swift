@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Arcify Safari
+//  Arc Power
 //
 //  Created by Nathan Tracey on 2/22/26.
 //

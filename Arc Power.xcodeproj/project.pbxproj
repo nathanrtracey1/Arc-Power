@@ -40,7 +40,7 @@
 			containerPortal = C8BF5C962F4B9D2200CA44C3 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C8BF5CB82F4B9D2400CA44C3;
-			remoteInfo = "Arcify Safari Extension";
+			remoteInfo = "Arc Power Extension";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -199,7 +199,7 @@
 			name = "Arc Power";
 			packageProductDependencies = (
 			);
-			productName = "Arcify Safari";
+			productName = "Arc Power";
 			productReference = C8BF5C9E2F4B9D2200CA44C3 /* Arc Power.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -218,7 +218,7 @@
 			name = "Arc Power Extension";
 			packageProductDependencies = (
 			);
-			productName = "Arcify Safari Extension";
+			productName = "Arc Power Extension";
 			productReference = C8BF5CB92F4B9D2400CA44C3 /* Arc Power Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
@@ -488,7 +488,7 @@
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "NTracey.ArcifySafari.ArcifySafari-Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "NTracey.ArcPower.Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -523,7 +523,7 @@
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "NTracey.ArcifySafari.ArcifySafari-Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "NTracey.ArcPower.Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -565,7 +565,7 @@
 					"-framework",
 					WebKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = NTracey.ArcifySafari;
+				PRODUCT_BUNDLE_IDENTIFIER = NTracey.ArcPower;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -608,7 +608,7 @@
 					"-framework",
 					WebKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = NTracey.ArcifySafari;
+				PRODUCT_BUNDLE_IDENTIFIER = NTracey.ArcPower;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
