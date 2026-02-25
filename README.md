@@ -2,6 +2,18 @@
 
 Arc Power is a Safari Web Extension that adds an Arc‑style vertical sidebar and command bar to Safari on macOS. This repository contains the Swift host app, the Safari Web Extension, and a small packaged sample for distribution.
 
+> **Vibe-coded:** This project was built with AI assistance and a human directing it. Human development is welcome — whether you prefer to refine the vibe, fix bugs, or add features, contributions and forks are encouraged.
+
+### Screenshots
+
+| Edit Space — name, icon, and accent color | Sidebar with search overlay |
+|------------------------------------------|-----------------------------|
+| ![Edit Space](screenshots/edit-space.png) | ![Sidebar search](screenshots/sidebar-search.png) |
+
+| Sidebar with pinned/tabs | Sidebar with command search |
+|--------------------------|-----------------------------|
+| ![Sidebar tabs](screenshots/sidebar-tabs.png) | ![Sidebar YouTube](screenshots/sidebar-youtube.png) |
+
 ### Requirements
 
 - macOS 13 or later
