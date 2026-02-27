@@ -7,7 +7,7 @@ Safari caches extensions. After code changes, do this so the **new** sidebar (cl
 - Make sure Safari is not running (check the Dock).
 
 ## 2. In Xcode: clean and run the **Packaged** project
-- Open: **ArcifySafari** → **ArcifySafari-Packaged** → **Arcify Safari** → double‑click **Arc Power.xcodeproj**.
+- Open: **ArcifySafari** → **ArcifySafari-Packaged** → **Arc Power** → double‑click **Arc Power.xcodeproj**.
 - **Product → Clean Build Folder** (⇧⌘K).
 - **Product → Run** (⌘R).
 - The “Arc Power” app will launch. Leave it running.

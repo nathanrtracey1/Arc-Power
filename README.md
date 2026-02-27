@@ -28,7 +28,7 @@ Arc Power is a Safari Web Extension that adds an Arc‑style vertical sidebar an
 
 ### Building and running
 
-1. Open **Arc Power.xcodeproj** in `ArcifySafari-Packaged/Arcify Safari/` in Xcode.
+1. Open **Arc Power.xcodeproj** in `ArcifySafari-Packaged/Arc Power/` in Xcode.
 2. Select the **Arc Power** scheme.
 3. In the target’s **Signing & Capabilities** tab:
    - Set **Team** to your own Apple Developer team.
@@ -94,7 +94,7 @@ Arc-style vertical tab panel for Safari: Spaces, pinned tabs, search, and ⌘B t
 The extension only shows up in Safari when you build and run the **packager-generated** project:
 
 1. **Open the correct Xcode project**  
-   In Finder go to: **ArcifySafari** → **ArcifySafari-Packaged** → **Arcify Safari**  
+   In Finder go to: **ArcifySafari** → **ArcifySafari-Packaged** → **Arc Power**  
    Double-click **Arc Power.xcodeproj**.
 
 2. **Quit Safari** completely (Safari → Quit Safari, or ⌘Q).
@@ -128,9 +128,11 @@ From the **repository root** (with Xcode and the project already set up for sign
 
 Pass a version string (e.g. `1.0` or `1.2.3`) or leave it out to default to `1.0`. After building, enable the extension in **Safari → Settings → Extensions** as above. For GitHub Releases, attach the DMG and/or PKG to a release so users can download and install directly.
 
+> **Security note:** The generated DMG and app are **unsigned** by default. On first launch, macOS will likely warn that the app is from an unidentified developer. To open it, right-click the app in Finder, choose **Open**, then click **Open** again in the dialog. Distributors can add Developer ID signing later if desired.
+
 ## Project structure
 
-- **ArcifySafari-Packaged/Arcify Safari/** – Xcode project that registers with Safari (use this one).
+- **ArcifySafari-Packaged/Arc Power/** – Xcode project that registers with Safari (use this one).
 - **ArcifySafari/** – Original wrapper app (optional).
 - **ArcifySafari Extension/** – Web extension source (manifest, JS, CSS); same code is in the Packaged project’s extension folder.
 

@@ -15,6 +15,7 @@
 		C8BF5CAE2F4B9D2200CA44C3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BF5CAD2F4B9D2200CA44C3 /* ViewController.swift */; };
 		C8BF5CB12F4B9D2200CA44C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8BF5CAF2F4B9D2200CA44C3 /* Main.storyboard */; };
 		C8BF5CB32F4B9D2400CA44C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8BF5CB22F4B9D2400CA44C3 /* Assets.xcassets */; };
+		A1B2C3D4E5F60002A2B3C4D5 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60001A2B3C4D5 /* AppIcon.icon */; };
 		C8BF5CBA2F4B9D2400CA44C3 /* Arc Power Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C8BF5CB92F4B9D2400CA44C3 /* Arc Power Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C8BF5CBF2F4B9D2400CA44C3 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BF5CBE2F4B9D2400CA44C3 /* SafariWebExtensionHandler.swift */; };
 		C8BF5CD32F4B9D2500CA44C3 /* icon16.png in Resources */ = {isa = PBXBuildFile; fileRef = C8BF5CCB2F4B9D2500CA44C3 /* icon16.png */; };
@@ -30,8 +31,7 @@
 		C8BF5CE62F4B9D2600CA44C3 /* command-content.js in Resources */ = {isa = PBXBuildFile; fileRef = C8BF5CE22F4B9D2600CA44C3 /* command-content.js */; };
 		C8BF5CE72F4B9D2600CA44C3 /* spotlight.css in Resources */ = {isa = PBXBuildFile; fileRef = C8BF5CE32F4B9D2600CA44C3 /* spotlight.css */; };
 		C8BF5CE82F4B9D2600CA44C3 /* arcify-bootstrap.js in Resources */ = {isa = PBXBuildFile; fileRef = C8BF5CE92F4B9D2600CA44C3 /* arcify-bootstrap.js */; };
-		C8CCEA042F4BD74900170792 /* Arcify.icon in Resources */ = {isa = PBXBuildFile; fileRef = C8CCEA032F4BD74900170792 /* Arcify.icon */; };
-		C8CCEA052F4BD74900170792 /* Arcify.icon in Resources */ = {isa = PBXBuildFile; fileRef = C8CCEA032F4BD74900170792 /* Arcify.icon */; };
+		C8BF5CEA2F4B9D2600CA44C3 /* fuzzy-worker.js in Resources */ = {isa = PBXBuildFile; fileRef = C8BF5CEB2F4B9D2600CA44C3 /* fuzzy-worker.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +68,7 @@
 		C8BF5CAD2F4B9D2200CA44C3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C8BF5CB02F4B9D2200CA44C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C8BF5CB22F4B9D2400CA44C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A1B2C3D4E5F60001A2B3C4D5 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AppIcon.icon"; sourceTree = "<group>"; };
 		C8BF5CB42F4B9D2400CA44C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8BF5CB92F4B9D2400CA44C3 /* Arc Power Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Arc Power Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8BF5CBE2F4B9D2400CA44C3 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
@@ -85,7 +86,7 @@
 		C8BF5CE22F4B9D2600CA44C3 /* command-content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "command-content.js"; sourceTree = "<group>"; };
 		C8BF5CE32F4B9D2600CA44C3 /* spotlight.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = spotlight.css; sourceTree = "<group>"; };
 		C8BF5CE92F4B9D2600CA44C3 /* arcify-bootstrap.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "arcify-bootstrap.js"; sourceTree = "<group>"; };
-		C8CCEA032F4BD74900170792 /* Arcify.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = Arcify.icon; sourceTree = "<group>"; };
+		C8BF5CEB2F4B9D2600CA44C3 /* fuzzy-worker.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "fuzzy-worker.js"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +132,7 @@
 				C8BF5CAD2F4B9D2200CA44C3 /* ViewController.swift */,
 				C8BF5CAF2F4B9D2200CA44C3 /* Main.storyboard */,
 				C8BF5CB22F4B9D2400CA44C3 /* Assets.xcassets */,
+				A1B2C3D4E5F60001A2B3C4D5 /* AppIcon.icon */,
 				C8BF5CB42F4B9D2400CA44C3 /* Info.plist */,
 				C8BF5CA32F4B9D2200CA44C3 /* Resources */,
 			);
@@ -154,7 +156,6 @@
 				C8BF5CCA2F4B9D2500CA44C3 /* Resources */,
 				C8BF5CBE2F4B9D2400CA44C3 /* SafariWebExtensionHandler.swift */,
 				C8BF5CC02F4B9D2400CA44C3 /* Info.plist */,
-				C8CCEA032F4BD74900170792 /* Arcify.icon */,
 			);
 			path = "Arc Power Extension";
 			sourceTree = "<group>";
@@ -175,6 +176,7 @@
 				C8BF5CE12F4B9D2600CA44C3 /* arc-command-background.js */,
 				C8BF5CE22F4B9D2600CA44C3 /* command-content.js */,
 				C8BF5CE32F4B9D2600CA44C3 /* spotlight.css */,
+				C8BF5CEB2F4B9D2600CA44C3 /* fuzzy-worker.js */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -266,11 +268,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8BF5CA82F4B9D2200CA44C3 /* Icon.png in Resources */,
-				C8CCEA042F4BD74900170792 /* Arcify.icon in Resources */,
 				C8BF5CB12F4B9D2200CA44C3 /* Main.storyboard in Resources */,
 				C8BF5CAC2F4B9D2200CA44C3 /* Script.js in Resources */,
 				C8BF5CA62F4B9D2200CA44C3 /* Main.html in Resources */,
 				C8BF5CB32F4B9D2400CA44C3 /* Assets.xcassets in Resources */,
+				A1B2C3D4E5F60002A2B3C4D5 /* AppIcon.icon in Resources */,
 				C8BF5CAA2F4B9D2200CA44C3 /* Style.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,7 +287,6 @@
 				C8BF5CD42F4B9D2500CA44C3 /* background.js in Resources */,
 				C8BF5CD52F4B9D2500CA44C3 /* popup.html in Resources */,
 				C8BF5CD62F4B9D2500CA44C3 /* icon48.png in Resources */,
-				C8CCEA052F4BD74900170792 /* Arcify.icon in Resources */,
 				C8BF5CD82F4B9D2500CA44C3 /* manifest.json in Resources */,
 				C8BF5CD92F4B9D2500CA44C3 /* content.js in Resources */,
 				C8BF5CD32F4B9D2500CA44C3 /* icon16.png in Resources */,
@@ -293,6 +294,7 @@
 				C8BF5CE52F4B9D2600CA44C3 /* arc-command-background.js in Resources */,
 				C8BF5CE62F4B9D2600CA44C3 /* command-content.js in Resources */,
 				C8BF5CE72F4B9D2600CA44C3 /* spotlight.css in Resources */,
+				C8BF5CEA2F4B9D2600CA44C3 /* fuzzy-worker.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,7 +401,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 26.2;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -456,7 +458,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 26.2;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -483,12 +485,12 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.1;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "NTracey.ArcPower.Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = NTracey.ArcPower.Extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -518,12 +520,12 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.1;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "NTracey.ArcPower.Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = NTracey.ArcPower.Extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -551,6 +553,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Arc Power/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Arc Power";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -558,7 +561,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.1;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -594,6 +597,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Arc Power/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Arc Power";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -601,7 +605,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.1;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,

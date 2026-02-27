@@ -8,11 +8,7 @@
 
 import SafariServices
 import os.log
-#if os(macOS)
 import AppKit
-#elseif os(iOS)
-import UIKit
-#endif
 
 /// Native host entry point for the Arc Power Web Extension.
 /// Safari delivers `browser.runtime.sendNativeMessage` traffic here.
@@ -24,14 +20,14 @@ class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
         let request = context.inputItems.first as? NSExtensionItem
 
         let profile: UUID?
-        if #available(iOS 17.0, macOS 14.0, *) {
+        if #available(macOS 14.0, *) {
             profile = request?.userInfo?[SFExtensionProfileKey] as? UUID
         } else {
             profile = request?.userInfo?["profile"] as? UUID
         }
 
         let message: Any?
-        if #available(iOS 15.0, macOS 11.0, *) {
+        if #available(macOS 11.0, *) {
             message = request?.userInfo?[SFExtensionMessageKey]
         } else {
             message = request?.userInfo?["message"]
@@ -39,30 +35,23 @@ class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
 
         os_log(.default, "Received message from browser.runtime.sendNativeMessage: %@ (profile: %@)", String(describing: message), profile?.uuidString ?? "none")
 
-        // If the web extension sends { command: "show-menu" } we present a native
-        // NSMenu that mirrors the toolbar popover actions (Copy Link, Duplicate, Pin, etc.).
         var responsePayload: [String: Any] = ["echo": message ?? NSNull()]
         if let dict = message as? [String: Any],
-           let command = dict["command"] as? String,
-           command == "show-menu" {
+           let command = dict["command"] as? String {
             let ctx = dict["context"] as? [String: Any]
-#if os(macOS)
-            responsePayload["supportedNativeMenu"] = true
-            let selected = showCommandMenuAndWait(context: ctx)
-            responsePayload["selected"] = selected ?? NSNull()
-            if let url = ctx?["url"] as? String, selected == "copy-link" {
-                NSPasteboard.general.clearContents()
-                NSPasteboard.general.setString(url, forType: .string)
+            if command == "show-menu" {
+                responsePayload["supportedNativeMenu"] = true
+                let selected = showCommandMenuAndWait(context: ctx)
+                responsePayload["selected"] = selected ?? NSNull()
+                if let url = ctx?["url"] as? String, selected == "copy-link" {
+                    NSPasteboard.general.clearContents()
+                    NSPasteboard.general.setString(url, forType: .string)
+                }
             }
-#else
-            // iOS: no NSMenu. Tell the web UI to fall back to the HTML menu.
-            responsePayload["supportedNativeMenu"] = false
-            responsePayload["selected"] = NSNull()
-#endif
         }
 
         let response = NSExtensionItem()
-        if #available(iOS 15.0, macOS 11.0, *) {
+        if #available(macOS 11.0, *) {
             response.userInfo = [SFExtensionMessageKey: responsePayload]
         } else {
             response.userInfo = ["message": responsePayload]
@@ -71,9 +60,6 @@ class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
         context.completeRequest(returningItems: [response], completionHandler: nil)
     }
 
-    /// Builds and displays a native macOS menu with the same items that appear
-    /// in the extension’s command popover.
-#if os(macOS)
     private func showCommandMenuAndWait(context: [String: Any]?) -> String? {
         let target = MenuActionTarget()
         let menu = NSMenu()
@@ -148,10 +134,8 @@ class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
         menu.popUp(positioning: nil, at: location, in: nil)
         return target.selectedActionId
     }
-#endif
 }
 
-#if os(macOS)
 private final class MenuActionTarget: NSObject {
     var selectedActionId: String?
 
@@ -159,4 +143,3 @@ private final class MenuActionTarget: NSObject {
         selectedActionId = sender.representedObject as? String
     }
 }
-#endif

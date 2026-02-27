@@ -10,7 +10,7 @@ set -e
 VERSION="${1:-1.0}"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
-PACKAGED_DIR="$REPO_ROOT/ArcifySafari-Packaged/Arcify Safari"
+PACKAGED_DIR="$REPO_ROOT/ArcifySafari-Packaged/Arc Power"
 PROJECT="$PACKAGED_DIR/Arc Power.xcodeproj"
 BUILD_DIR="$PACKAGED_DIR/build"
 PKG_NAME="Arc-Power-${VERSION}"
