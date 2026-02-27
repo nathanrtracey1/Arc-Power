@@ -1,0 +1,1 @@
+/Users/nathantracey/Documents/Extensions/ArcifySafari/ArcifySafari Extension/fuzzy-worker.js
